@@ -12,6 +12,7 @@ function App() {
             <h3>P1 score: {player1Score}</h3>
             <h3>P2 score: {player2Score}</h3>
             <section>
+                <button className='roll-button'>Roll!</button>
                 <h4>Last Roll: {lastDiceRoll}</h4>
             </section>
         </div>
