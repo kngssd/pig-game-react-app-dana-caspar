@@ -9,16 +9,6 @@ function App() {
     const [turnTotal, setTurnTotal] = useState(0);
     const [player1Turn, setPlayer1Turn] = useState(true);
 
-    // function gameTurn() {
-    //     const resultP1Score = player1score + turnTotal;
-    //     const resultP2Score = player2score + turnTotal;
-
-    //     if (playerTurn == "P1") {
-    //         setPlayer1score(resultP1Score);
-
-    //         if
-    //     }
-
     function handleRoll() {
         const roll = diceRoll();
         setLastDiceRoll(roll);
