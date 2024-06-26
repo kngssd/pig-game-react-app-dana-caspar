@@ -5,7 +5,7 @@ function App() {
     const [player1Score, setPlayer1Score] = React.useState(0);
     const [player2Score, setPlayer2Score] = React.useState(0);
     const [lastDiceRoll, setLastDiceRoll] = React.useState("-");
-    const [gameDuration, setGameDuration] = useState(5);
+    const [gameDuration, setGameDuration] = useState(30);
     const [turnTotal, setTurnTotal] = useState(0);
     const [player1Turn, setPlayer1Turn] = useState(true);
 
@@ -37,12 +37,12 @@ function App() {
         return false;
     }
 
-    function handleNG(){
-        setTurnTotal(0)
-        setPlayer1Score(0)
-        setPlayer2Score(0)
-        setPlayer1Turn(true)
-        setLastDiceRoll('-')
+    function handleNG() {
+        setTurnTotal(0);
+        setPlayer1Score(0);
+        setPlayer2Score(0);
+        setPlayer1Turn(true);
+        setLastDiceRoll("-");
     }
 
     return (
@@ -78,7 +78,9 @@ function App() {
                     Stick!
                 </button>
             </section>
-            <button className='NGButton' onClick={handleNG}>New Game</button>
+            <button className="NGButton" onClick={handleNG}>
+                New Game
+            </button>
         </div>
     );
 }
