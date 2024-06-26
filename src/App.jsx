@@ -5,17 +5,17 @@ function App() {
     const [player1Score, setPlayer1Score] = React.useState(0);
     const [player2Score, setPlayer2Score] = React.useState(0);
     const [lastDiceRoll, setLastDiceRoll] = React.useState("-");
-    const [gameDuration, setGameDuration] = useState(30);
+    const [gameDuration, setGameDuration] = useState(5);
     const [turnTotal, setTurnTotal] = useState(0);
     const [player1Turn, setPlayer1Turn] = useState(true);
 
     function handleRoll() {
         const roll = diceRoll();
-        if(roll === 1){
-            setTurnTotal(0)
-            setPlayer1Turn((prevValue) => !prevValue)
+        if (roll === 1) {
+            setTurnTotal(0);
+            setPlayer1Turn((prevValue) => !prevValue);
         } else {
-        setTurnTotal((prevTotal) => prevTotal + roll);
+            setTurnTotal((prevTotal) => prevTotal + roll);
         }
         setLastDiceRoll(roll);
     }
@@ -30,6 +30,20 @@ function App() {
         setPlayer1Turn((prevalue) => !prevalue);
     }
 
+    // function determineWinner() {
+    //     if (player1Turn) {
+    //         return "1";
+    //     }
+    //     return "2";
+    // }
+
+    function determineGameOver() {
+        if (player1Score >= gameDuration || player2Score >= gameDuration) {
+            return true;
+        }
+        return false;
+    }
+
     return (
         <div>
             <h1>Pig Game</h1>
@@ -39,15 +53,27 @@ function App() {
             <h3>
                 {player1Turn ? "" : "playing"} P2 score: {player2Score}
             </h3>
-            <h3></h3>
+            <h3>
+                {determineGameOver()
+                    ? `game over player ${player1Turn ? "2" : "1"} wins!`
+                    : ""}
+            </h3>
 
             <section>
-                <button className="roll-button" onClick={handleRoll}>
+                <button
+                    className="roll-button"
+                    disabled={determineGameOver()}
+                    onClick={handleRoll}
+                >
                     Roll!
                 </button>
                 <h4>Last Roll: {lastDiceRoll}</h4>
                 <h4>Turn Total: {turnTotal}</h4>
-                <button className="stick-button" onClick={handleStick}>
+                <button
+                    className="stick-button"
+                    disabled={determineGameOver()}
+                    onClick={handleStick}
+                >
                     Stick!
                 </button>
             </section>
