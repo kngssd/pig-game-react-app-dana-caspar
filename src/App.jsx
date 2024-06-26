@@ -19,10 +19,20 @@ function App() {
     //         if
     //     }
 
-    function handleRoll(){
-        const roll = diceRoll()
-        setLastDiceRoll(roll)
-        setTurnTotal((prevTotal)=> prevTotal + roll)
+    function handleRoll() {
+        const roll = diceRoll();
+        setLastDiceRoll(roll);
+        setTurnTotal((prevTotal) => prevTotal + roll);
+    }
+
+    function handleStick() {
+        setTurnTotal(0);
+        if (player1Turn) {
+            setPlayer1Score((prevScore) => prevScore + turnTotal);
+        } else {
+            setPlayer2Score((prevScore) => prevScore + turnTotal);
+        }
+        setPlayer1Turn((prevalue) => !prevalue);
     }
 
     return (
@@ -37,9 +47,14 @@ function App() {
             <h3></h3>
 
             <section>
-                <button className="roll-button" onClick={handleRoll}>Roll!</button>
+                <button className="roll-button" onClick={handleRoll}>
+                    Roll!
+                </button>
                 <h4>Last Roll: {lastDiceRoll}</h4>
                 <h4>Turn Total: {turnTotal}</h4>
+                <button className="stick-button" onClick={handleStick}>
+                    Stick!
+                </button>
             </section>
         </div>
     );
