@@ -17,6 +17,10 @@ select {
     font: inherit;
 }
 
-.roll-button{
+.roll-button {
     background-color: greenyellow;
+}
+
+.stick-button {
+    background-color: red;
 }
