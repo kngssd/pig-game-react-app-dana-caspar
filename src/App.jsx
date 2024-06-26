@@ -11,8 +11,13 @@ function App() {
 
     function handleRoll() {
         const roll = diceRoll();
-        setLastDiceRoll(roll);
+        if(roll === 1){
+            setTurnTotal(0)
+            setPlayer1Turn((prevValue) => !prevValue)
+        } else {
         setTurnTotal((prevTotal) => prevTotal + roll);
+        }
+        setLastDiceRoll(roll);
     }
 
     function handleStick() {
