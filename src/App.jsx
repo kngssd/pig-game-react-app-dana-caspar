@@ -1,5 +1,5 @@
-import { DemonstratingProps } from "./components/demo/DemonstratingProps";
 import React, { useState } from "react";
+import diceRoll from "./components/diceRoll";
 
 function App() {
     const [player1Score, setPlayer1Score] = React.useState(0);
@@ -7,7 +7,6 @@ function App() {
     const [lastDiceRoll, setLastDiceRoll] = React.useState("-");
     const [gameDuration, setGameDuration] = useState(30);
     const [turnTotal, setTurnTotal] = useState(0);
-    const [playerTurn, setPlayerTurn] = useState("P1");
     const [player1Turn, setPlayer1Turn] = useState(true);
 
     // function gameTurn() {
@@ -20,10 +19,15 @@ function App() {
     //         if
     //     }
 
+    function handleRoll(){
+        const roll = diceRoll()
+        setLastDiceRoll(roll)
+        setTurnTotal((prevTotal)=> prevTotal + roll)
+    }
+
     return (
         <div>
-            <h1>App component</h1>
-            <DemonstratingProps />
+            <h1>Pig Game</h1>
             <h3>
                 {player1Turn ? "playing " : ""} P1 score: {player1Score}
             </h3>
@@ -33,7 +37,7 @@ function App() {
             <h3></h3>
 
             <section>
-                <button className="roll-button">Roll!</button>
+                <button className="roll-button" onClick={handleRoll}>Roll!</button>
                 <h4>Last Roll: {lastDiceRoll}</h4>
                 <h4>Turn Total: {turnTotal}</h4>
             </section>
