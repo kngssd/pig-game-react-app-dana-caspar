@@ -30,18 +30,19 @@ function App() {
         setPlayer1Turn((prevalue) => !prevalue);
     }
 
-    // function determineWinner() {
-    //     if (player1Turn) {
-    //         return "1";
-    //     }
-    //     return "2";
-    // }
-
     function determineGameOver() {
         if (player1Score >= gameDuration || player2Score >= gameDuration) {
             return true;
         }
         return false;
+    }
+
+    function handleNG(){
+        setTurnTotal(0)
+        setPlayer1Score(0)
+        setPlayer2Score(0)
+        setPlayer1Turn(true)
+        setLastDiceRoll('-')
     }
 
     return (
@@ -77,6 +78,7 @@ function App() {
                     Stick!
                 </button>
             </section>
+            <button className='NGButton' onClick={handleNG}>New Game</button>
         </div>
     );
 }
